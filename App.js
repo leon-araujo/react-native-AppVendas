@@ -6,7 +6,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './src/Home';
 
-
 function HomeCliente(){
   const Stack = createNativeStackNavigator();
   return(
@@ -46,6 +45,7 @@ export default function App() {
             </View>
             <TouchableOpacity  onPress={validarCli} style={styles.btnCad}>Cadastrar</TouchableOpacity>
             <Modal animationType='slide' transparent={false} visible={open}>
+              <Text>Cliente: {name}</Text>
               <SafeAreaView>
                 <TouchableOpacity onPress={ () => setOpen(false)}>
                   <Ionicons name="md-arrow-back" size={40} color='#000'/>
