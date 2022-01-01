@@ -45,15 +45,24 @@ export default function App() {
             </View>
             <TouchableOpacity  onPress={validarCli} style={styles.btnCad}>Cadastrar</TouchableOpacity>
             <Modal animationType='slide' transparent={false} visible={open}>
-              <Text>Cliente: {name}</Text>
-              <SafeAreaView>
-                <TouchableOpacity onPress={ () => setOpen(false)}>
-                  <Ionicons name="md-arrow-back" size={40} color='#000'/>
-                </TouchableOpacity>  
-                <NavigationContainer>
-                  <HomeCliente></HomeCliente>
-                </NavigationContainer>
-              </SafeAreaView>
+              <ScrollView>
+                <SafeAreaView>
+                  <TouchableOpacity onPress={ () => setOpen(false)}>
+                    <Ionicons name="md-arrow-back" size={40} color='#000'/>
+                  </TouchableOpacity>
+                  <View style={styles.cabecario}>
+                    <Text style={styles.title}>Loja do Leonardo Moura</Text>
+                  </View>
+                  <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 10, marginBottom: 10}}>
+                    <Text style={styles.titleCliente}>Cliente: {name}</Text>  
+                  </View>
+                  <View style={{position: 'relative'}}>
+                  <NavigationContainer>
+                    <HomeCliente></HomeCliente>
+                  </NavigationContainer>
+                  </View>
+                </SafeAreaView>
+              </ScrollView>
             </Modal>
         </View>
       </SafeAreaView>
@@ -90,7 +99,7 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       fontSize: 20,
       fontFamily: 'Arial',
-      width: '50%'
+      width: 250
   },
   title: {
     fontSize: 19,
@@ -105,5 +114,17 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     padding: 15
+  },
+  titleCliente: {
+    marginTop: 10,
+    marginBottom: 15,
+    padding: 15,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0a568c',
+    width: '80%',
+    borderRadius: 15,
+    fontSize: 15,
+    color: '#fff'
   }
 });
