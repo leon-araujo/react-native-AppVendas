@@ -4,7 +4,6 @@ import { StyleSheet, View, TextInput, TouchableOpacity, Text, ScrollView, SafeAr
 
 export default function Home({ navigation }) {
     const [name, setName] = useState('') ;
-    const [open, setOpen] = useState(false);
 
 
     function validarCli() {
@@ -69,7 +68,6 @@ const styles = StyleSheet.create({ // Estilização da page Home
         color: '#fff',
         borderRadius: 10,
         fontSize: 18,
-        fontFamily: 'Arial',
         width: 150
     },
     title: {
