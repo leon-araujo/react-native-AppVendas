@@ -1,84 +1,84 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, Image, Modal } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity } from "react-native-web";
+import React,{useState} from 'react';
+import { StyleSheet, View, TextInput, TouchableOpacity, Text, ScrollView, SafeAreaView } from 'react-native';
 
 
-export default function Home() {
-  const [open, setOpen] = useState(false);
+export default function Home({ navigation }) {
+    const [name, setName] = useState('') ;
+    const [open, setOpen] = useState(false);
 
-  function img01() {
-    setOpen(true); 
-  }
 
-  return (
-    <View style={styles.containerIMG}>
-        <TouchableOpacity onPress={img01}>
-          <View style={styles.imgGrade}>
-              <Text style={styles.imgTitle}>Poco X3 Pro 5G 128GB</Text>
-              <Image style={styles.img} source={require('../Image/smartphone-00.png')}></Image>
-              <Text style={styles.imgPreco}>Preço: R$1.245,99</Text>
-              <Text style={styles.imgPreco}>Parcelameto: Até 5x s/juros</Text>
-          </View>
-        </TouchableOpacity>
-        <View style={styles.imgGrade}>
-            <Text style={styles.imgTitle}>Moto G30</Text>
-            <Image style={styles.img} source={require('../Image/smartphone-01.png')}></Image>
-            <Text style={styles.imgPreco}>Preço: R$1.375,00</Text>
-            <Text style={styles.imgPreco}>Parcelameto: Até 5x s/juros</Text>
-        </View>
-        <View style={styles.imgGrade}>
-            <Text style={styles.imgTitle}>Iphone 8S Plus</Text>
-            <Image style={styles.img} source={require('../Image/smartphone-02.png')}></Image>
-            <Text style={styles.imgPreco}>Preço: R$2.799,00</Text>
-            <Text style={styles.imgPreco}>Parcelameto: Até 5x s/juros</Text>
-        </View>
-        <Modal animationType='slide' transparent={false} visible={open}>
-        <TouchableOpacity onPress={ () => setOpen(false)}>
-          <Ionicons name="md-arrow-back" size={40} color='#000'/>
-        </TouchableOpacity>
-        <Text>TESTE01</Text>
-        </Modal>
-    </View>
-  );
+    function validarCli() {
+        if (name === '') {
+            alert('Nome de cliente não informado')
+        } else {
+            return navigation.navigate("Produto", {nomeCli: name })
+        }
+    }    
+
+    return(
+        <ScrollView>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.home}>
+                    <TextInput
+                    style={styles.cliNome}
+                    placeholder='Nome Do Cliente'
+                    value={name}
+                    onChangeText={(texto) => setName(texto)}
+                    autoCorrect={false}
+                    />
+                    <View style={styles.btnContainer}>
+                        <TouchableOpacity onPress={validarCli}><Text style={styles.btnCad}>Cadastrar</Text></TouchableOpacity>
+                    </View>       
+                </View>
+            </SafeAreaView>
+        </ScrollView>
+    );
 }
 
-const styles = StyleSheet.create({
-    containerIMG: {
+const styles = StyleSheet.create({ // Estilização da page Home
+    container: {
         flex: 1,
-        width: '100%',
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    home: {
+      marginTop: '20%',
+      width: '80%',
+      
+    },
+    cliNome: {
+      padding: 8,
+      borderRadius: 10,
+      borderColor: '#ddd',
+      borderWidth: 3,
+      fontSize: 16
+    },
+    btnContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 350
+        marginTop: 50,
+        
     },
-    imgGrade: {
-        width: '90%',
-        padding: 10,
-        marginTop: 15,
-        shadowColor: '#000',
-        shadowOpacity: 0.2,
-        shadowOffset: {
-          width: 1,
-          height: 3
-        },
-        borderRadius: 15,
-        backgroundColor: '#f6f6f6'
-    },
-    imgPreco: {
+    btnCad: {
         textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 14
-    
+        marginTop: 10,
+        paddingTop: 13,
+        paddingBottom: 13,
+        backgroundColor: '#0070c0',
+        color: '#fff',
+        borderRadius: 10,
+        fontSize: 18,
+        fontFamily: 'Arial',
+        width: 150
     },
-    imgTitle: {
-        fontSize: 16,
+    title: {
+        fontSize: 19,
         fontWeight: 'bold',
+        color: '#fff',
+        backgroundColor: '#0070c0',
         textAlign: 'center',
-    },
-    img: {
-        flex: 1,
-        height: 150,
-        width: '100%',
-        resizeMode: 'center',
-    },
-});
+        padding: 15
+      }
+  });
+  
