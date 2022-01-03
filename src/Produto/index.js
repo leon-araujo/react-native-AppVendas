@@ -64,7 +64,7 @@ export default function Produto({ route }) {
           <SafeAreaView style={styles.modal}>
             <View style={styles.modalHeader}>
               <TouchableOpacity onPress={ () => setImg1(false)}>
-                <Ionicons style={{marginLeft: 5, marginRight: 5}} name='md-arrow-back' size={40} color={'#fff'}/>
+                <Ionicons style={{marginLeft: 5, marginRight: 5}} name='md-close' size={40} color={'#fff'}/>
               </TouchableOpacity>
               <Text style={styles.dono}>Loja do Leonardo Moura</Text>
             </View>
@@ -208,6 +208,7 @@ const styles = StyleSheet.create({
       color: '#fff',
       width: '80%',
       padding: 10,
+      marginTop: 15,
       borderRadius: 10,
       textAlign: 'center'
     },
