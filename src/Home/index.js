@@ -1,10 +1,9 @@
 import React,{useState} from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity, Text, ScrollView, SafeAreaView, Modal } from 'react-native';
 
 
 export default function Home({ navigation }) {
     const [name, setName] = useState('') ;
-
 
     function validarCli() {
         if (name === '') {
@@ -15,31 +14,67 @@ export default function Home({ navigation }) {
     }    
 
     return(
-        <ScrollView>
-            <SafeAreaView style={styles.container}>
-                <View style={styles.home}>
-                    <TextInput
-                    style={styles.cliNome}
-                    placeholder='Nome Do Cliente'
-                    value={name}
-                    onChangeText={(texto) => setName(texto)}
-                    autoCorrect={false}
-                    />
-                    <View style={styles.btnContainer}>
-                        <TouchableOpacity onPress={validarCli}><Text style={styles.btnCad}>Cadastrar</Text></TouchableOpacity>
-                    </View>       
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
+                <View style={styles.container2}>
+                    <View style={styles.home}>
+                        <TextInput
+                        style={styles.cliNome}
+                        placeholder='Nome Do Cliente'
+                        value={name}
+                        onChangeText={(texto) => setName(texto)}
+                        autoCorrect={false}
+                        />
+                        <View style={styles.btnContainer}>
+                            <TouchableOpacity onPress={validarCli}><Text style={styles.btnCad}>Cadastrar</Text></TouchableOpacity>
+                        </View>       
+                    </View>
                 </View>
-            </SafeAreaView>
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({ // Estilização da page Home
+    teste4: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#033859',
+    },
+    teste1: {
+        borderRadius: 15,
+        width: '90%',
+        padding: 20
+    },
+    teste2: {
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color: '#fff'
+    },
+    teste5: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    teste3: {
+        textAlign: 'center',
+        backgroundColor: '#55baff',
+        color: '#fff',
+        width: 150,
+        fontSize: 20,
+        borderRadius: 10,
+        padding: 5
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        
+    },
+    container2: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     home: {
       marginTop: '20%',

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, Modal, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Produto({ route }) {
   const [img1, setImg1] = useState(false);
   const [img2, setImg2] = useState(false);
   const [img3, setImg3] = useState(false);
+  const [open, seOpen] = useState(true);
+
   const navigation = useNavigation();
 
   function img01() {
@@ -18,34 +20,42 @@ export default function Produto({ route }) {
   function img03() {
     setImg3(true);
   }
+
   function logOut() {
     alert('COMPRA ENCERRADA!');
     navigation.navigate("Home");
   }
 
   return (
+    <ScrollView>
     <View style={styles.containerIMG}>
         <Text style={styles.cliente}>Cliente: {route.params.nomeCli}</Text>
         <TouchableOpacity style={styles.prod} onPress={img01}>
-          <View style={styles.imgGrade}>
+          <View style={styles.imgGradePrincipal}>
               <Text style={styles.imgTitle}>Poco X3 Pro 5G 128GB</Text>
-              <Image style={styles.img} source={require('../Image/smartphone-00.png')}/>
+              <View style={styles.imgGrade}>
+                <Image style={styles.img} source={require('../Image/smartphone-00.png')}/>
+              </View>
               <Text style={styles.imgPreco}>Preço: R$1.245,99</Text>
               <Text style={styles.imgPreco}>Parcelameto: Até 5x s/juros</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.prod} onPress={img02}>
-          <View style={styles.imgGrade}>
+          <View style={styles.imgGradePrincipal}>
               <Text style={styles.imgTitle}>Moto G30</Text>
-              <Image style={styles.img} source={require('../Image/smartphone-01.png')}/>
+              <View style={styles.imgGrade}>
+                <Image style={styles.img} source={require('../Image/smartphone-01.png')}/>
+              </View>
               <Text style={styles.imgPreco}>Preço: R$1.375,00</Text>
               <Text style={styles.imgPreco}>Parcelameto: Até 5x s/juros</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.prod} onPress={img03}>
-          <View style={styles.imgGrade}>
-              <Text style={styles.imgTitle}>Iphone 8S Plus</Text>
-              <Image style={styles.img} source={require('../Image/smartphone-02.png')}/>
+          <View style={styles.imgGradePrincipal}>
+              <Text style={styles.imgTitle}>Iphone 8 Plus</Text>
+              <View style={styles.imgGrade}>
+                <Image style={styles.img} source={require('../Image/smartphone-02.png')}/>
+              </View>
               <Text style={styles.imgPreco}>Preço: R$2.799,00</Text>
               <Text style={styles.imgPreco}>Parcelameto: Até 5x s/juros</Text>
           </View>
@@ -62,10 +72,10 @@ export default function Produto({ route }) {
               <Text style={styles.detProdNome}>Poco X3 Pro 5G 128GB</Text>
               <Image style={styles.imgModal} source={require('../Image/smartphone-00.png')}/>
               <View style={styles.detProdInfo}>
-                <Text style={styles.detProdInfoText}>Marca:</Text>
-                <Text style={styles.detProdInfoText}>Modelo:</Text>
-                <Text style={styles.detProdInfoText}>Armazenamento:</Text>
-                <Text style={styles.detProdInfoText}>Memória:</Text>
+                <Text style={styles.detProdInfoText}>Marca: Xiaomi</Text>
+                <Text style={styles.detProdInfoText}>Fabricante: Xiaomi</Text>
+                <Text style={styles.detProdInfoText}>Armazenamento: 128GB</Text>
+                <Text style={styles.detProdInfoText}>Memória RAM: 6GB</Text>
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
@@ -82,13 +92,13 @@ export default function Produto({ route }) {
               <Text style={styles.dono}>Loja do Leonardo Moura</Text>
             </View>
             <View style={styles.detProd}>
-              <Text style={styles.detProdNome}>Poco X3 Pro 5G 128GB</Text>
+              <Text style={styles.detProdNome}>Moto G30</Text>
               <Image style={styles.imgModal} source={require('../Image/smartphone-01.png')}/>
               <View style={styles.detProdInfo}>
-                <Text style={styles.detProdInfoText}>Marca:</Text>
-                <Text style={styles.detProdInfoText}>Modelo:</Text>
-                <Text style={styles.detProdInfoText}>Armazenamento:</Text>
-                <Text style={styles.detProdInfoText}>Memória:</Text>
+                <Text style={styles.detProdInfoText}>Marca: Motorola</Text>
+                <Text style={styles.detProdInfoText}>Fabricante: Motorola</Text>
+                <Text style={styles.detProdInfoText}>Armazenamento: 128GB</Text>
+                <Text style={styles.detProdInfoText}>Memória Ram: 4GB</Text>
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
@@ -105,13 +115,13 @@ export default function Produto({ route }) {
               <Text style={styles.dono}>Loja do Leonardo Moura</Text>
             </View>
             <View style={styles.detProd}>
-              <Text style={styles.detProdNome}>Poco X3 Pro 5G 128GB</Text>
+              <Text style={styles.detProdNome}>Iphone 8 Plus</Text>
               <Image style={styles.imgModal} source={require('../Image/smartphone-02.png')}/>
               <View style={styles.detProdInfo}>
-                <Text style={styles.detProdInfoText}>Marca:</Text>
-                <Text style={styles.detProdInfoText}>Modelo:</Text>
-                <Text style={styles.detProdInfoText}>Armazenamento:</Text>
-                <Text style={styles.detProdInfoText}>Memória:</Text>
+                <Text style={styles.detProdInfoText}>Marca: Apple</Text>
+                <Text style={styles.detProdInfoText}>Fabricante: Apple</Text>
+                <Text style={styles.detProdInfoText}>Armazenamento: 64GB</Text>
+                <Text style={styles.detProdInfoText}>Memória RAM: 2GB</Text>
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
@@ -120,6 +130,7 @@ export default function Produto({ route }) {
           </SafeAreaView>
         </Modal>
     </View>
+    </ScrollView>
   );
 }
 
@@ -131,18 +142,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         top: 0
     },
-    imgGrade: {
+    imgGradePrincipal: {
         width: '90%',
         padding: 10,
         marginTop: 15,
-        shadowColor: '#000',
-        shadowOpacity: 0.2,
-        shadowOffset: {
-          width: 1,
-          height: 3
-        },
         borderRadius: 15,
-        backgroundColor: '#ddd'
+        backgroundColor: '#ddd',
+    },
+    imgGrade: {
+      flexDirection: 'row',
+      flexWrap: 'wrap'
     },
     imgPreco: {
         textAlign: 'center',
@@ -158,7 +167,7 @@ const styles = StyleSheet.create({
     img: {
         flex: 1,
         height: 150,
-        width: '100%',
+        width: 300,
         resizeMode: 'center',
     },
     imgModal: {
