@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Image, Modal, TouchableOpacity, SafeAreaView, ScrollView} from 'react-native';
+import { Text, View, StyleSheet, Image, Modal, TouchableOpacity, SafeAreaView, ScrollView, FlatList} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import TaskList from "../TaskList";
 
 export default function Produto({ route }) {
   const [img1, setImg1] = useState(false);
   const [img2, setImg2] = useState(false);
   const [img3, setImg3] = useState(false);
+  const [carrinho, setCarrinho] = useState(false);
+  const [task, setTask] = useState([{key: 1, task: 'Lista 1'}]);
 
   const navigation = useNavigation();
 
@@ -29,9 +32,31 @@ export default function Produto({ route }) {
     alert('Produto Adicionado!');
   }
 
+  function cartSharp() {
+    setCarrinho(true);
+  }
   return (
     <View>
     <ScrollView>
+    <Modal animationType="slide" transparent={false} visible={carrinho}>
+    <View style={styles.modalHeader}>
+      <TouchableOpacity onPress={ () => setCarrinho(false)}>
+        <Ionicons style={{marginLeft: 5, marginRight: 5}} name='md-close' size={40} color={'#fff'}/>
+      </TouchableOpacity>
+      <Text style={styles.dono}>Loja do Leonardo Moura</Text>
+    </View>
+      <View>
+        {/* COLO O NOME DA PAGINA OU COLOCAR O ICONE DE CARRINHO EM CIMA */}
+        <FlatList
+        marginHorizontal={10}
+        showsHorizontalScrollIndicator={false}
+        data={task}
+        keyExtractor={(item) => String(item.key)}
+        renderItem={({item}) => <TaskList data={item}/>}
+        />
+      </View>
+    </Modal>
+
     <View style={styles.containerIMG}>
         <Text style={styles.cliente}>Cliente: {route.params.nomeCli}</Text>
         <TouchableOpacity style={styles.prod} onPress={img01}>
@@ -152,10 +177,10 @@ export default function Produto({ route }) {
     </View>
     </ScrollView>
     <View style={styles.btnCartContainer}>
-      <TouchableOpacity>
-        <TouchableOpacity style={styles.btnCart}>
+      <TouchableOpacity onPress={cartSharp}>
+        <View style={styles.btnCart}>
           <Ionicons name="md-cart-sharp" size={35} color="#FFF"/>
-        </TouchableOpacity>
+        </View>
       </TouchableOpacity>
     </View>
     </View>
@@ -310,5 +335,8 @@ const styles = StyleSheet.create({
         width: 1,
         height: 3,
       }
+    },
+    cartContainer: {
+      flex: 1
     }
 });
