@@ -7,7 +7,6 @@ export default function Produto({ route }) {
   const [img1, setImg1] = useState(false);
   const [img2, setImg2] = useState(false);
   const [img3, setImg3] = useState(false);
-  const [open, seOpen] = useState(true);
 
   const navigation = useNavigation();
 
@@ -26,7 +25,12 @@ export default function Produto({ route }) {
     navigation.navigate("Home");
   }
 
+  function addProd() {
+    alert('Produto Adicionado!');
+  }
+
   return (
+    <View>
     <ScrollView>
     <View style={styles.containerIMG}>
         <Text style={styles.cliente}>Cliente: {route.params.nomeCli}</Text>
@@ -80,7 +84,7 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={addProd}>
                   <View style={styles.btnAdd}>
                     <Ionicons name="ios-add" size={50} color="#FFF"/> 
                   </View>
@@ -93,7 +97,7 @@ export default function Produto({ route }) {
           <SafeAreaView style={styles.modal}>
             <View style={styles.modalHeader}>
               <TouchableOpacity onPress={ () => setImg2(false)}>
-                <Ionicons style={{marginLeft: 5, marginRight: 5}} name='md-arrow-back' size={40} color={'#fff'}/>
+                <Ionicons style={{marginLeft: 5, marginRight: 5}} name='md-close' size={40} color={'#fff'}/>
               </TouchableOpacity>
               <Text style={styles.dono}>Loja do Leonardo Moura</Text>
             </View>
@@ -108,7 +112,11 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
-
+                <TouchableOpacity onPress={addProd}>
+                  <View style={styles.btnAdd}>
+                    <Ionicons name="ios-add" size={50} color="#FFF"/> 
+                  </View>
+                </TouchableOpacity>
               </View>
             </View>
           </SafeAreaView>
@@ -117,7 +125,7 @@ export default function Produto({ route }) {
           <SafeAreaView style={styles.modal}>
             <View style={styles.modalHeader}>
               <TouchableOpacity onPress={ () => setImg3(false)}>
-                <Ionicons style={{marginLeft: 5, marginRight: 5}} name='md-arrow-back' size={40} color={'#fff'}/>
+                <Ionicons style={{marginLeft: 5, marginRight: 5}} name='md-close' size={40} color={'#fff'}/>
               </TouchableOpacity>
               <Text style={styles.dono}>Loja do Leonardo Moura</Text>
             </View>
@@ -132,12 +140,25 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
+                <TouchableOpacity onPress={addProd}>
+                  <View style={styles.btnAdd}>
+                    <Ionicons name="ios-add" size={50} color="#FFF"/> 
+                  </View>
+                </TouchableOpacity>
               </View>
             </View>
           </SafeAreaView>
         </Modal>
     </View>
     </ScrollView>
+    <View style={styles.btnCartContainer}>
+      <TouchableOpacity>
+        <TouchableOpacity style={styles.btnCart}>
+          <Ionicons name="md-cart-sharp" size={35} color="#FFF"/>
+        </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
+    </View>
   );
 }
 
@@ -147,7 +168,8 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        top: 0
+        top: 0,
+        zIndex: 1
     },
     imgGradePrincipal: {
         width: '90%',
@@ -267,4 +289,26 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       marginTop: 30
     },
+    btnCartContainer: {
+      flex: 1,
+      zIndex: 9,
+      right: 20,
+      bottom: 20,
+      position: 'absolute',
+    },
+    btnCart: {
+      backgroundColor: '#0070c0',
+      color: '#fff',
+      borderRadius: 30,
+      alignItems:'center',
+      justifyContent: 'center',
+      width: 60,
+      height: 60,
+      shadowColor: '#000',
+      shadowOpacity: 0.3,
+      shadowOffset: {
+        width: 1,
+        height: 3,
+      }
+    }
 });
