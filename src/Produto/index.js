@@ -60,6 +60,7 @@ export default function Produto({ route }) {
               <Text style={styles.imgPreco}>Parcelameto: Até 5x s/juros</Text>
           </View>
         </TouchableOpacity>
+        
         <Modal animationType="slide" transparent={false} visible={img1}>
           <SafeAreaView style={styles.modal}>
             <View style={styles.modalHeader}>
@@ -79,6 +80,11 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
+                <TouchableOpacity>
+                  <View style={styles.btnAdd}>
+                    <Ionicons name="ios-add" size={50} color="#FFF"/> 
+                  </View>
+                </TouchableOpacity>
               </View>
             </View>
           </SafeAreaView>
@@ -102,6 +108,7 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
+
               </View>
             </View>
           </SafeAreaView>
@@ -227,6 +234,12 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
     },
+    btnContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 15,
+      flexDirection: 'row',
+    },
     btnCad: {
       textAlign: 'center',
       paddingTop: 13,
@@ -236,17 +249,22 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       fontSize: 18,
       width: 180,
-      fontWeight: 'bold'
-  },
-    btnContainer: {
+      fontWeight: 'bold',
+      marginRight: '25%',
+    },
+    btnAdd: {
+      backgroundColor: '#0070c0',
+      color: '#fff',
+      borderRadius: 30,
+      alignItems:'center',
       justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom: 15
+      width: 50,
+      height: 50,
     },
     detProdNome: {
       fontSize: 25,
       fontWeight: 'bold',
       textAlign: 'center',
       marginTop: 30
-    }
+    },
 });
