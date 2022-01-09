@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Image, Modal, TouchableOpacity, SafeAreaView, ScrollView, FlatList} from 'react-native';
+import { Text, View, StyleSheet, Image, Modal, TouchableOpacity, SafeAreaView, ScrollView, FlatList, TextInput} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import TaskList from "../TaskList";
@@ -9,7 +9,9 @@ export default function Produto({ route }) {
   const [img2, setImg2] = useState(false);
   const [img3, setImg3] = useState(false);
   const [carrinho, setCarrinho] = useState(false);
-  const [task, setTask] = useState([{key: 1, task: 'Lista 1'}]);
+  const [task, setTask] = useState([]);
+  const [input, setInput] = useState('');
+  const [chave, setChave] = useState();
 
   const navigation = useNavigation();
 
@@ -28,12 +30,52 @@ export default function Produto({ route }) {
     navigation.navigate("Home");
   }
 
-  function addProd() {
+  function addProd1() {
+    /*setInput('Poco X3 Pro 128GB');
+    setChave(1);
+    addProdCart();*/
+    const data = {
+      key:  'Poco X3 Pro 128GB',
+      task: 'Poco X3 Pro 128GB'
+    };
+    setTask([...task, data]);
+    alert('Produto Adicionado!');
+  }
+  function addProd2() {
+    /*setInput('Moto G30');
+    setChave(2);
+    addProdCart();*/
+    const data = {
+      key:  'Moto G30',
+      task: 'Moto G30'
+    };
+    setTask([...task, data]);
+    alert('Produto Adicionado!');
+  }
+  function addProd3() {
+    /*setInput('Iphone 8 Plus');
+    setChave(3);
+    addProdCart();*/
+    const data = {
+      key:  'Iphone 8 Plus',
+      task: 'Iphone 8 Plus'
+    };
+    setTask([...task, data]);
+    alert('Produto Adicionado!');
+  }
+
+  function addProdCart() {
+    const data = {
+      key:  chave,
+      task: input
+    };
+    setTask([...task, data]);
+    setInput('');
     alert('Produto Adicionado!');
   }
 
   function cartSharp() {
-    setCarrinho(true);
+      setCarrinho(true);
   }
   return (
     <View>
@@ -46,7 +88,9 @@ export default function Produto({ route }) {
       <Text style={styles.dono}>Loja do Leonardo Moura</Text>
     </View>
       <View>
-        {/* COLO O NOME DA PAGINA OU COLOCAR O ICONE DE CARRINHO EM CIMA */}
+        <Text style={styles.title}>Carrinho de Compras</Text>
+      </View>
+      <View>
         <FlatList
         marginHorizontal={10}
         showsHorizontalScrollIndicator={false}
@@ -99,7 +143,8 @@ export default function Produto({ route }) {
               <Text style={styles.dono}>Loja do Leonardo Moura</Text>
             </View>
             <View style={styles.detProd}>
-              <Text style={styles.detProdNome}>Poco X3 Pro 5G 128GB</Text>
+              <Text></Text>
+              <TextInput style={styles.detProdNome} editable={false}>Poco X3 Pro 5G 128GB</TextInput>
               <Image style={styles.imgModal} source={require('../Image/smartphone-00.png')}/>
               <View style={styles.detProdInfo}>
                 <Text style={styles.detProdInfoText}>Marca: Xiaomi</Text>
@@ -109,7 +154,7 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
-                <TouchableOpacity onPress={addProd}>
+                <TouchableOpacity onPress={addProd1}>
                   <View style={styles.btnAdd}>
                     <Ionicons name="ios-add" size={50} color="#FFF"/> 
                   </View>
@@ -137,7 +182,7 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
-                <TouchableOpacity onPress={addProd}>
+                <TouchableOpacity onPress={addProd2}>
                   <View style={styles.btnAdd}>
                     <Ionicons name="ios-add" size={50} color="#FFF"/> 
                   </View>
@@ -165,7 +210,7 @@ export default function Produto({ route }) {
               </View>
               <View style={styles.btnContainer}>
                 <TouchableOpacity onPress={logOut}><Text style={styles.btnCad}>Encerrar Compra</Text></TouchableOpacity>
-                <TouchableOpacity onPress={addProd}>
+                <TouchableOpacity onPress={addProd3}>
                   <View style={styles.btnAdd}>
                     <Ionicons name="ios-add" size={50} color="#FFF"/> 
                   </View>
@@ -312,7 +357,8 @@ const styles = StyleSheet.create({
       fontSize: 25,
       fontWeight: 'bold',
       textAlign: 'center',
-      marginTop: 30
+      marginTop: 30,
+      color: '#000'
     },
     btnCartContainer: {
       flex: 1,
@@ -338,5 +384,13 @@ const styles = StyleSheet.create({
     },
     cartContainer: {
       flex: 1
+    },
+    title: {
+      fontSize: 25,
+      top: 5,
+      marginBottom: 10,
+      color: '#124578',
+      fontWeight: 'bold',
+      textAlign: 'center'
     }
 });
