@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
                         autoCorrect={false}
                         />
                         <View style={styles.btnContainer}>
-                            <TouchableOpacity onPress={validarCli}><Text style={styles.btnCad}>Cadastrar</Text></TouchableOpacity>
+                            <TouchableOpacity onPress={validarCli}><Text style={styles.btnCad}>Entrar</Text></TouchableOpacity>
                         </View>       
                     </View>
                 </View>
